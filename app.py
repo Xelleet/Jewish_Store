@@ -49,16 +49,29 @@ def add_product(cart_product_id):
 
     new_product = CartProduct(name=product.name, price=product.price, product_id=cart_product_id)
 
+    if session.query(CartProduct).filter(CartProduct.name == product.name).first():
+        session.close()
+        return redirect(url_for('index'))
+
     if new_product:
         session.add(new_product)
         session.commit()
         session.close()
+        return redirect(url_for('cart'))
 
-    return redirect(url_for('index'))
+    return render_template('index.html')
 
 @app.route('/admin')
 def admin():
     return render_template('admin.html')
+
+@app.route('/cart')
+def cart():
+    session = Session()
+    products = session.query(CartProduct).all()
+    session.close()
+
+    return render_template('cart.html', products=products)
 
 @app.route('/admin', methods=['GET', 'POST'])
 def add_new_product():

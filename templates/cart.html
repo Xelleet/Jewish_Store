@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='cartstyle.css')}}">
+    <div class="cart-container">
+        <h1>Корзина</h1>
+        <div class="products-column">
+            {% for product in products %}
+            <div class="product-card">
+                <h2>{{product.name}}</h2>
+                <p class="price">{{product.price}}</p>
+                <button class="buy-button">Купить</button>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
