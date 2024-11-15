@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+  <div class="txt_field">
+    <input type="text" required  name="name">
+    <label>Product name</label>
+    <span></span>
+  </div>
+  <div class="txt_field">
+    <input type="text" required name="description" >
+    <label>Description</label>
+    <span></span>
+  </div>
+  <div class="txt_field">
+    <input type="text" required name="price">
+    <label>Price</label>
+    <span></span>
+  </div>
+  <button type="submit">Добавить товар</button>
+</form>
+{% endblock %}
